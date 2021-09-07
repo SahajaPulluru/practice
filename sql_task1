@@ -1,0 +1,66 @@
+CREATE TABLE users(id INT(10),name VARCHAR(20),m_id INT(10));
+CREATE TABLE codekata(user_id INT(10),no_of_psolved INT(10));
+CREATE TABLE attendance(user_id INT(10),percentage FLOAT(10));
+CREATE TABLE topics(topic_id INT(10),topic_name VARCHAR(20) );
+CREATE TABLE tasks(task_id INT(10),task_name VARCHAR(20));
+CREATE TABLE company_drives(drive_id INT(10),comp_name VARCHAR(20));
+CREATE TABLE mentors(mentor_id INT(10),mentor_name VARCHAR(20));
+CREATE TABLE students_activated_courses(student_id INT(10),course_id VARCHAR(10));
+CREATE TABLE courses(course_id INT(10),course_name VARCHAR(20));
+
+INSERT INTO users(10,'sahaja',31);
+INSERT INTO users(11,'deeksha',32);
+INSERT INTO users(12,'safoora',);
+INSERT INTO users(13,'neha',35);
+INSERT INTO users(14,'meghana',33);
+
+INSERT INTO codekata(10,5);
+INSERT INTO codekata(11,10);
+INSERT INTO codekata(12,15);
+INSERT INTO codekata(13,20);
+INSERT INTO codekata(14,30);
+
+INSERT INTO attendance(10,98);
+INSERT INTO attendance(11,92.5);
+INSERT INTO attendance(12,97);
+INSERT INTO attendance(13,95.6);
+INSERT INTO attendance(14,92);
+
+INSERT INTO topics(1,'class_selectors');
+INSERT INTO topics(2,'id_selectors');
+INSERT INTO topics(3,'html_lists');
+INSERT INTO topics(4,'html_tables');
+INSERT INTO topics(5,'html_images');
+
+INSERT INTO tasks(41,'html_practice');
+INSERT INTO tasks(42,'css_practice');
+INSERT INTO tasks(43,'javascript_practice');
+INSERT INTO tasks(44,'node_practice');
+INSERT INTO tasks(45,'angular_practice');
+
+INSERT INTO company_drives(21,'chubb');
+INSERT INTO company_drives(22,'google');
+INSERT INTO company_drives(23,'microsoft');
+INSERT INTO company_drives(24,'amazon');
+INSERT INTO company_drives(25,'cisco');
+
+INSERT INTO mentors(31,'sridhar');
+INSERT INTO mentors(32,'pavan');
+INSERT INTO mentors(33,'shyam');
+INSERT INTO mentors(34,'gautham');
+INSERT INTO mentors(35,'bhaskar');
+
+INSERT INTO students_activated_courses(10,);
+INSERT INTO students_activated_courses(11,);
+INSERT INTO students_activated_courses(12,);
+INSERT INTO students_activated_courses(13,);
+INSERT INTO students_activated_courses(14,);
+
+INSERT INTO courses(51,'html');
+INSERT INTO courses(52,'css');
+INSERT INTO courses(53,'javascript');
+INSERT INTO courses(54,'nodejs');
+INSERT INTO courses(55,'angular');
+
+select * from mentors;
+select count(*) from users where mentor_id IS NOT NULL;
