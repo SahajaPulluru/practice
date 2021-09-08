@@ -1,12 +1,15 @@
-CREATE TABLE users(id INT(10),name VARCHAR(20),m_id INT(10));
-CREATE TABLE codekata(user_id INT(10),no_of_psolved INT(10));
-CREATE TABLE attendance(user_id INT(10),percentage FLOAT(10));
+--1
+CREATE TABLE users(id INT(10) PRIMARY KEY ,name VARCHAR(20),m_id INT(10)FOREIGN KEY REFERENCES mentors(mentor_id));
+CREATE TABLE codekata(user_id INT(10) FOREIGN KEY REFERENCES users(id),no_of_psolved INT(10));
+CREATE TABLE attendance(user_id INT(10)FOREIGN KEY REFERENCES users(id),percentage FLOAT(10));
 CREATE TABLE topics(topic_id INT(10),topic_name VARCHAR(20) );
 CREATE TABLE tasks(task_id INT(10),task_name VARCHAR(20));
-CREATE TABLE company_drives(drive_id INT(10),comp_name VARCHAR(20));
-CREATE TABLE mentors(mentor_id INT(10),mentor_name VARCHAR(20));
-CREATE TABLE students_activated_courses(student_id INT(10),course_id VARCHAR(10));
-CREATE TABLE courses(course_id INT(10),course_name VARCHAR(20));
+CREATE TABLE company_drives(user_id INT(10) FOREIGN KEY REFERENCES users(id),comp_name VARCHAR(20));
+CREATE TABLE mentors(mentor_id INT(10)PRIMARY KEY,mentor_name VARCHAR(20));
+CREATE TABLE students_activated_courses(student_id INT(10) FOREIGN KEY REFERENCES users(id),course_id VARCHAR(10) FOREIGN KEY REFERENCES courses(course_id));
+CREATE TABLE courses(course_id INT(10) PRIMARY KEY,course_name VARCHAR(20));
+
+--2
 
 INSERT INTO users(10,'sahaja',31);
 INSERT INTO users(11,'deeksha',32);
@@ -38,11 +41,11 @@ INSERT INTO tasks(43,'javascript_practice');
 INSERT INTO tasks(44,'node_practice');
 INSERT INTO tasks(45,'angular_practice');
 
-INSERT INTO company_drives(21,'chubb');
-INSERT INTO company_drives(22,'google');
-INSERT INTO company_drives(23,'microsoft');
-INSERT INTO company_drives(24,'amazon');
-INSERT INTO company_drives(25,'cisco');
+INSERT INTO company_drives(10,'chubb');
+INSERT INTO company_drives(11,'google');
+INSERT INTO company_drives(12,'microsoft');
+INSERT INTO company_drives(13,'amazon');
+INSERT INTO company_drives(14,'cisco');
 
 INSERT INTO mentors(31,'sridhar');
 INSERT INTO mentors(32,'pavan');
@@ -50,11 +53,11 @@ INSERT INTO mentors(33,'shyam');
 INSERT INTO mentors(34,'gautham');
 INSERT INTO mentors(35,'bhaskar');
 
-INSERT INTO students_activated_courses(10,);
-INSERT INTO students_activated_courses(11,);
-INSERT INTO students_activated_courses(12,);
-INSERT INTO students_activated_courses(13,);
-INSERT INTO students_activated_courses(14,);
+INSERT INTO students_activated_courses(10,51);
+INSERT INTO students_activated_courses(11,51);
+INSERT INTO students_activated_courses(12,53);
+INSERT INTO students_activated_courses(13,53);
+INSERT INTO students_activated_courses(14,54);
 
 INSERT INTO courses(51,'html');
 INSERT INTO courses(52,'css');
@@ -62,5 +65,21 @@ INSERT INTO courses(53,'javascript');
 INSERT INTO courses(54,'nodejs');
 INSERT INTO courses(55,'angular');
 
+--3
+
+select user_id,no_of_psolved from codekata join users on users.user_id=codekata.user_id;
+
+--4
+
+select count(comp_name) from company_drives join users ON users.user_id=company_drives.user_id group by user_id;
+
+--5
+
+select course_name from student_activated_courses JOIN courses on student_activated_courses.course_id=courses.course_id;
+
+--6
+
 select * from mentors;
-select count(*) from users where mentor_id IS NOT NULL;
+
+--7
+select count(*) from users where m_id IS NOT NULL;
