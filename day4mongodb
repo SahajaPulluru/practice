@@ -1,0 +1,43 @@
+---1
+db.topic_task.find({
+ "$and":[
+ {
+    "$where" : "this.Start_Date.getMonth()==09"
+  },
+ {
+      "$where" : "this.Task.Task_start.getMonth()==09"
+  }
+] },
+ {
+      "Topic_name":1,
+       "Task.Task_name" :1
+ }).pretty()
+
+
+---2
+db.campus_drive.find({"Date": {$gte:"15-10-2020",$lt:"31-10-2020"}},{"Name":1,"Date":1,"Placement.Colleges.Clg_name":1}).pretty()
+
+--3
+db.campus_drive.find({},{"Name":1,"Date":1,"Placement.Colleges.Clg_name":1,"Placement.Colleges.Students":1}).pretty()
+
+--4
+db.codekata.find({},{"Id":1,"Name":1,"Email":1,"Problems.Solved":1}).pretty()
+
+--5
+db.mentors.find( { $where: "this.Mentees.Mentee_Id.length >= 15" },{Id : 1 , Name : 1, Branch : 1}).pretty();
+
+--6
+db.user.find({"$and":[
+                         {
+                             "Absent":{
+                                     "$gt":"15-10-2020","$lt":"31-10-2020"
+                             }
+                         },
+                         {
+                             "Task.Sub_date":{
+                                 "$not":{
+                                     "$gt":"15-10-2020","$lt":"31-10-2020"
+                                 }
+                             }
+                         }
+                     ]}).pretty();
